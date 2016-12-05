@@ -1,0 +1,20 @@
+{
+  "name": "comichron-data-embeddable",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack",
+    "watch": "webpack-dev-server --inline --port 9999"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^1.13.3",
+    "webpack-dev-server": "^1.16.2"
+  },
+  "dependencies": {
+    "comichron-data-browser-client": "^2.0.0"
+  }
+}
