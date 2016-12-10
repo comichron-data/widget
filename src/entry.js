@@ -1,4 +1,8 @@
-var client = require('comichron-data-browser-client');;require('./style/styles.scss')
+var client = require('comichron-data-browser-client');
+
+var styleElement = document.createElement('style');
+styleElement.textContent = require('./style/styles.scss');
+document.head.appendChild(styleElement);
 
 var widgetSelector = '[data-comichron-comic-id]';
 
