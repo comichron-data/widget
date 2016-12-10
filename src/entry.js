@@ -7,21 +7,20 @@ document.head.appendChild(styleElement);
 var widgetSelector = '[data-comichron-comic-id]';
 
 var widgetContainers = document.querySelectorAll(widgetSelector);
-widgetContainers = Array.prototype.slice.call(widgetContainers);
+Array.prototype.slice.call(widgetContainers)
+  .forEach(function(widgetContainer) {
+    var comicId = widgetContainer.getAttribute('data-comichron-comic-id');
 
-widgetContainers.forEach(function(widgetContainer) {
-  var comicId = widgetContainer.getAttribute('data-comichron-comic-id');
+    if (!comicId) {
+      console.error('No comic id specified on', widgetContainer);
+    } else {
+      client.byIssue(comicId, function(error, data) {
+        if (error) return console.error(error);
 
-  if (!comicId) {
-    console.error('No comic id specified on', widgetContainer);
-  } else {
-    client.byIssue(comicId, function(error, data) {
-      if (error) return console.error(error);
-
-      renderWidget(widgetContainer, data);
-    });
-  }
-});
+        renderWidget(widgetContainer, data);
+      });
+    }
+  });
 
 function renderWidget(container, data) {
   container.appendChild(makeMain(data));
