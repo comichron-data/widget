@@ -10,52 +10,52 @@ module.exports = {
 
 function styleMain(main) {
   applyStyles(main, {
-    'background-color': '#21252b',
-    width: '100%',
-    position: 'relative',
-    'z-index': 0,
-    height: '200px',
+    'background-color': '#21252b', //bgColor
+    'border-radius': '.5rem',
+    'box-sizing': 'border-box',
     'font-family': '"HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif',
     'font-weight': 300,
-    'border-radius': '.5rem',
-    padding: '.5rem',
-    'box-sizing': 'border-box'
+    'height': '200px',
+    'padding': '.5rem',
+    'position': 'relative',
+    'width': '100%',
+    'z-index': 0
   });
 }
 
 function styleGraph(graph) {
   applyStyles(graph, {
-    display: 'flex',
-    height: 'calc(100% - 1rem)',
+    'box-sizing': 'border-box',
+    'display': 'flex',
+    'height': 'calc(100% - 1rem)',
+    'left': '1rem',
     'overflow-x': 'scroll',
     'overflow-y': 'hidden',
-    position: 'absolute',
-    left: '1rem',
-    top: '1rem',
-    'z-index': -1,
-    width: 'calc(100% - 1rem)',
-    'box-sizing': 'border-box'
+    'position': 'absolute',
+    'top': '1rem',
+    'width': 'calc(100% - 1rem)',
+    'z-index': -1
   });
 }
 
 function styleBar(bar, heightPercentage) {
   applyStyles(bar, {
-    display: 'inline-block',
-    height: heightPercentage + '%',
-    position: 'relative',
-    width: '100%',
+    'background-color': 'rgba(255, 255, 255, .2)',
     'border-radius': '2px 2px 0 0',
-    'background-color': 'rgba(255, 255, 255, .2)'
+    'display': 'inline-block',
+    'height': heightPercentage + '%',
+    'position': 'relative',
+    'width': '100%'
   });
 }
 
 function styleBarWrapper(barWrapper, first) {
   var barWrapperStyles = {
     'align-items': 'flex-end',
-    display: 'flex',
-    flex: '0 0 .6rem',
-    height: 'calc(100% - 2rem)',
-    position: 'relative'
+    'display': 'flex',
+    'flex': '0 0 .6rem',
+    'height': 'calc(100% - 2rem)',
+    'position': 'relative'
   };
 
   if (!first) {
@@ -67,9 +67,9 @@ function styleBarWrapper(barWrapper, first) {
 
 function styleHeader(header) {
   applyStyles(header, {
+    'color': 'rgba(255, 255, 255, .55)',
     'font-size': '1.2em',
-    'pointer-events': 'none',
-    'color': 'rgba(255, 255, 255, .55)'
+    'pointer-events': 'none'
   });
 }
 
