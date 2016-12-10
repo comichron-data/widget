@@ -48,13 +48,13 @@ function makeBars(data) {
   var maxRecord = findMaxRecord(data.records);
   data.records.forEach(function(record, index) {
     var percent = Math.floor(record.count / maxRecord.count * 100);
-    bars.push(makeBar(record, index == 0, percent));
+    bars.push(makeBar(record, percent));
   });
 
   return bars;
 }
 
-function makeBar(record, first, heightPercentage) {
+function makeBar(record, heightPercentage) {
   var barWrapper = document.createElement('div');
   var bar = document.createElement('div');
   barWrapper.appendChild(bar);
