@@ -14,22 +14,27 @@ function styleMain(main) {
     width: '100%',
     position: 'relative',
     'z-index': 0,
-    height: 'calc(100% - 1rem)',
-    margin: '0.5rem'
+    height: '200px',
+    'font-family': '"HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif',
+    'font-weight': 300,
+    'border-radius': '.5rem',
+    padding: '.5rem',
+    'box-sizing': 'border-box'
   });
 }
 
 function styleGraph(graph) {
   applyStyles(graph, {
     display: 'flex',
-    height: '100px',
+    height: 'calc(100% - 1rem)',
     'overflow-x': 'scroll',
     'overflow-y': 'hidden',
     position: 'absolute',
-    left: 0,
-    top: 0,
+    left: '1rem',
+    top: '1rem',
     'z-index': -1,
-    width: '100%'
+    width: 'calc(100% - 1rem)',
+    'box-sizing': 'border-box'
   });
 }
 
@@ -40,7 +45,7 @@ function styleBar(bar, heightPercentage) {
     position: 'relative',
     width: '100%',
     'border-radius': '2px 2px 0 0',
-    'background-color': 'rgba(33, 37, 43, 1)'
+    'background-color': 'rgba(255, 255, 255, .2)'
   });
 }
 
@@ -63,7 +68,8 @@ function styleBarWrapper(barWrapper, first) {
 function styleHeader(header) {
   applyStyles(header, {
     'font-size': '1.2em',
-    'pointer-events': 'none'
+    'pointer-events': 'none',
+    'color': 'rgba(255, 255, 255, .55)'
   });
 }
 
