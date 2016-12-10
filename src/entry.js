@@ -1,6 +1,4 @@
-var client = require('comichron-data-browser-client');
-var styles = require('./styles');
-require('./style/styles.scss')
+var client = require('comichron-data-browser-client');;require('./style/styles.scss')
 
 var widgetSelector = '[data-comichron-comic-id]';
 
@@ -29,7 +27,6 @@ function makeMain(data) {
   var main = document.createElement('div');
   main.appendChild(makeGraph(data));
   main.appendChild(makeHeader(data));
-  styles.styleMain(main);
   return main;
 }
 
@@ -37,9 +34,7 @@ function makeGraph(data) {
   var graph = document.createElement('div');
   makeBars(data).forEach(function(bar) {
     graph.appendChild(bar);
-  })
-
-  styles.styleGraph(graph);
+  });
 
   return graph;
 }
@@ -58,26 +53,19 @@ function makeBars(data) {
 
 function makeBar(record, first, heightPercentage) {
   var barWrapper = document.createElement('div');
-  styles.styleBarWrapper(barWrapper, first);
-
   var bar = document.createElement('div');
-  styles.styleBar(bar, heightPercentage);
-
   barWrapper.appendChild(bar);
   return barWrapper;
 }
 
 function makeHeader(data) {
   var header = document.createElement('div');
-  styles.styleHeader(header);
 
   var title = document.createElement('strong');
   title.textContent = data.title;
-  styles.styleTitle(title);
 
   var publisher = document.createElement('small');
   publisher.textContent = '(' + data.publisher + ')';
-  styles.stylePublisher(publisher);
 
   header.appendChild(title);
   header.appendChild(document.createTextNode(' '));

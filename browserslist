@@ -1,0 +1,10 @@
+# Browsers we support
+
+ie >= 10
+ff >= 31
+Chrome >= 31
+Safari >= 7
+Opera >= 27
+iOS >= 7.1
+Android >= 4.1
+last 2 versions
