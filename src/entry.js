@@ -1,4 +1,5 @@
 var client = require('comichron-data-browser-client');
+var shortNumber = require('./short-number');
 
 var styleElement = document.createElement('style');
 styleElement.textContent = require('./style/styles.scss');
@@ -57,10 +58,10 @@ function makeYAxisLabels(data, maxRecord) {
   return yAxisLabels;
 }
 
-function makeYAxisTick(label) {
+function makeYAxisTick(number) {
   var tick = document.createElement('div');
   tick.classList.add('cw-c-widget__y-axis-tick');
-  tick.textContent = label;
+  tick.textContent = shortNumber(number);
   return tick;
 }
 
