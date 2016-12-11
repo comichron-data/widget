@@ -1,5 +1,6 @@
 var client = require('comichron-data-browser-client');
 var shortNumber = require('./short-number');
+var readSettings = require('./read-settings');
 
 var styleElement = document.createElement('style');
 styleElement.textContent = require('./style/styles.scss');
@@ -10,27 +11,32 @@ var widgetSelector = '[data-comichron-comic-id]';
 var widgetContainers = document.querySelectorAll(widgetSelector);
 Array.prototype.slice.call(widgetContainers)
   .forEach(function(widgetContainer) {
-    var comicId = widgetContainer.getAttribute('data-comichron-comic-id');
+    var settings = readSettings(widgetContainer);
 
-    if (!comicId) {
+    if (!settings.comicId) {
       console.error('No comic id specified on', widgetContainer);
     } else {
-      client.byIssue(comicId, function(error, data) {
+      client.byIssue(settings.comicId, function(error, data) {
         if (error) return console.error(error);
 
-        renderWidget(widgetContainer, data);
+        renderWidget(widgetContainer, data, settings);
       });
     }
   });
 
-function renderWidget(container, data) {
-  container.appendChild(makeWidget(data));
+function renderWidget(container, data, settings) {
+  container.appendChild(makeWidget(data, settings));
 }
 
-function makeWidget(data) {
+function makeWidget(data, settings) {
   var widget = document.createElement('div');
   widget.classList.add('cw-c-widget');
-  widget.classList.add('cw-t-dark'); // Theme logic here?
+
+  if (settings.theme == 'dark') {
+    widget.classList.add('cw-t-dark');
+  } else if (settings.theme == 'light') {
+    widget.classList.add('cw-t-light');
+  }
 
   widget.appendChild(makeYAxisLabels(data));
   widget.appendChild(makeGraphArea(data));
