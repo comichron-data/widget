@@ -91,7 +91,7 @@ function makeBar(record, heightPercent) {
   bar.classList.add('cw-c-graph__bar');
   bar.style.height = heightPercent + '%';
   bar.setAttribute('data-x-axis-tick-value', record.issue);
-  bar.setAttribute('data-x-axis-bar-value', 'Some Value');
+  bar.setAttribute('data-x-axis-bar-value', record.count);
   return bar;
 }
 
