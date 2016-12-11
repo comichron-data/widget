@@ -23,58 +23,73 @@ Array.prototype.slice.call(widgetContainers)
   });
 
 function renderWidget(container, data) {
-  container.appendChild(makeMain(data));
+  container.appendChild(makeWidget(data));
 }
 
-function makeMain(data) {
-  var main = document.createElement('div');
-  main.appendChild(makeGraph(data));
-  main.appendChild(makeHeader(data));
-  return main;
+function makeWidget(data) {
+  var widget = document.createElement('div');
+  widget.classList.add('cw-c-widget');
+
+  widget.appendChild(makeYAxisLabels(data));
+  widget.appendChild(makeGraphArea(data));
+
+  return widget;
+}
+
+function makeYAxisLabels(data, maxRecord) {
+  var yAxisLabels = document.createElement('div');
+  yAxisLabels.classList.add('cw-c-widget__y-axis-label');
+
+  var max = findMaxRecord(data.records).count;
+
+  // how many middle ticks to show
+  var middleTicks = 2;
+  var tickInterval = Math.floor(max / (middleTicks + 1));
+
+  yAxisLabels.appendChild(makeYAxisTick(0));
+
+  for (var i = 0; i < middleTicks; i++) {
+    yAxisLabels.appendChild(makeYAxisTick(tickInterval * (i + 1)));
+  }
+
+  yAxisLabels.appendChild(makeYAxisTick(max));
+
+  return yAxisLabels;
+}
+
+function makeYAxisTick(label) {
+  var tick = document.createElement('div');
+  tick.classList.add('cw-c-widget__y-axis-tick');
+  tick.textContent = label;
+  return tick;
+}
+
+function makeGraphArea(data) {
+  var graphArea = document.createElement('div');
+  graphArea.classList.add('cw-c-widget__graph-area');
+  graphArea.appendChild(makeGraph(data));
+  return graphArea;
 }
 
 function makeGraph(data) {
   var graph = document.createElement('div');
-  makeBars(data).forEach(function(bar) {
-    graph.appendChild(bar);
+  graph.classList.add('cw-c-graph');
+
+  var maxRecord = findMaxRecord(data.records);
+  data.records.forEach(function(record) {
+    var heightPercent = Math.floor(record.count / maxRecord.count * 100);
+    graph.appendChild(makeBar(record, heightPercent));
   });
 
   return graph;
 }
 
-function makeBars(data) {
-  var bars = [];
-
-  var maxRecord = findMaxRecord(data.records);
-  data.records.forEach(function(record, index) {
-    var percent = Math.floor(record.count / maxRecord.count * 100);
-    bars.push(makeBar(record, percent));
-  });
-
-  return bars;
-}
-
-function makeBar(record, heightPercentage) {
-  var barWrapper = document.createElement('div');
+function makeBar(record, heightPercent) {
   var bar = document.createElement('div');
-  barWrapper.appendChild(bar);
-  return barWrapper;
-}
-
-function makeHeader(data) {
-  var header = document.createElement('div');
-
-  var title = document.createElement('strong');
-  title.textContent = data.title;
-
-  var publisher = document.createElement('small');
-  publisher.textContent = '(' + data.publisher + ')';
-
-  header.appendChild(title);
-  header.appendChild(document.createTextNode(' '));
-  header.appendChild(publisher);
-
-  return header;
+  bar.classList.add('cw-c-graph__bar');
+  bar.style.height = heightPercent + '%';
+  bar.setAttribute('data-x-axis-tick-value', record.issue);
+  return bar;
 }
 
 function findMaxRecord(records) {
