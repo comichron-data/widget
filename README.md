@@ -32,7 +32,7 @@ Repeat steps 2 and 3 for each widget you want to show on the page.
 
 ## Config Settings
 
-Config settings are attributes on the container element that you add to your page (step 3 of Quickstart).
+Config settings are attributes on the container element (container element is from step 3 of Quickstart).
 
 Purpose | Attribute | Allowed values | Required? | Default
 --------|-----------|----------------|-----------|--------
