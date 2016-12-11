@@ -8,10 +8,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 // 1.0 Settings
 ////////////////////////////////////////////////////////////////////////////////
-$graph-height: 300px;
-$x-axis-label-height: 45px;
-$default-background-color: white;
-$default-foreground-color: black;
+$graph-height: 150px;
+$x-axis-label-height: 25px;
+$default-background-color: #fff;
+$default-foreground-color: #000;
 ////////////////////////////////////////////////////////////////////////////////
 // 2.0 Tools
 ////////////////////////////////////////////////////////////////////////////////
@@ -78,10 +78,12 @@ $default-foreground-color: black;
 .cw-c-widget {
   background-color: $default-background-color;
   color: $default-foreground-color;
-  padding: 1rem;
   display: flex;
   flex-wrap: wrap;
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  padding: 1rem;
+  padding-right: 0;
+  padding-top: 2rem;
 
   * {
     box-sizing: border-box;
@@ -104,8 +106,8 @@ $default-foreground-color: black;
 
 .cw-c-widget__graph-area {
   flex: 1 1 0%;
-  overflow-x: scroll;
   height: $graph-height + $x-axis-label-height;
+  overflow-x: scroll;
 }
 
 //Graph
@@ -117,23 +119,50 @@ $default-foreground-color: black;
 }
 
 .cw-c-graph__bar {
-  background-color: currentColor;
+  background-color: $default-foreground-color;
   bottom: 0;
   display: inline-block;
   height: 100%;
   position: relative;
   width: 1rem;
-  border-radius: .25rem .25rem 0 0;
 
   &::before {
     content: attr(data-x-axis-tick-value);
     display: block;
+    font-size: 80%;
     left: 50%;
     position: absolute;
-    top: 100%;
-    transform-origin: top left;
+    top: calc(100% + .25rem);
     transform: rotate(45deg);
+    transform-origin: top left;
+  }
+
+  &::after {
+    background-color: $default-background-color;
+    content: attr(data-x-axis-bar-value);
+    display: block;
     font-size: 80%;
+    left: 50%;
+    opacity: 0;
+    padding-bottom: .5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: .5rem;
+    pointer-events: none;
+    position: absolute;
+    top: calc(0% + 1rem);
+    transform: translateX(1rem);
+    transform-origin: center left;
+    transition: transform .1s ease-out;
+    user-select: none;
+    z-index: 1;
+  }
+
+  &:hover {
+    &::after {
+      opacity: 1;
+      transform: translateX(0);
+    }
   }
 
   + .cw-c-graph__bar {
@@ -144,6 +173,50 @@ $default-foreground-color: black;
 ////////////////////////////////////////////////////////////////////////////////
 // Trumps
 ////////////////////////////////////////////////////////////////////////////////
-// .cw-t-dark {
-//
-// }
+.cw-t-dark {
+  &.cw-c-widget {
+    //body
+    background-color: #3c3c3c;
+    border-radius: 1rem;
+    color: #bdbdbd;
+  }
+
+  .cw-c-widget__y-axis-tick {
+    text-shadow: 2px 0 0 rgba(0, 0, 0, .2);
+  }
+
+  .cw-c-graph__bar {
+    //bar
+    background: linear-gradient(to bottom, rgba(0, 0, 0, .2) 0%, rgba(0, 0, 0, 0) 100%);
+    background-color: rgba(159, 159, 159, .9);
+    border-radius: .15rem .15rem 0 0;
+    box-shadow: .15rem 0 0 0 rgba(0, 0, 0, .2);
+
+
+    &::before {
+      //axis values
+      font-weight: bold;
+      text-shadow: 2px 0 0 rgba(0, 0, 0, .2);
+    }
+
+    &::after {
+      //tooltip
+      background: linear-gradient(to bottom, rgba(255, 255, 255, .2) 0%, rgba(0, 0, 0, 0) 100%);
+      background-color: rgba(0, 0, 0, .9);
+      border-radius: 0 1rem 1rem;
+      box-shadow: 0 .25rem 0 0 rgba(0, 0, 0, .2);
+      color: white;
+    }
+
+    &:hover {
+      //bar on hover
+      background-color: #fff;
+
+      &::after {
+        //tooltip on hover
+
+      }
+    }
+  }
+
+}

@@ -30,6 +30,7 @@ function renderWidget(container, data) {
 function makeWidget(data) {
   var widget = document.createElement('div');
   widget.classList.add('cw-c-widget');
+  widget.classList.add('cw-t-dark'); // Theme logic here?
 
   widget.appendChild(makeYAxisLabels(data));
   widget.appendChild(makeGraphArea(data));
@@ -90,6 +91,7 @@ function makeBar(record, heightPercent) {
   bar.classList.add('cw-c-graph__bar');
   bar.style.height = heightPercent + '%';
   bar.setAttribute('data-x-axis-tick-value', record.issue);
+  bar.setAttribute('data-x-axis-bar-value', 'Some Value');
   return bar;
 }
 
