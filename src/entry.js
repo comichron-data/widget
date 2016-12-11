@@ -6,20 +6,20 @@ var styleElement = document.createElement('style');
 styleElement.textContent = require('./style/styles.scss');
 document.head.appendChild(styleElement);
 
-var widgetSelector = '[data-comichron-comic-id]';
+var containerSelector = '[data-comichron-comic-id]';
 
-var widgetContainers = document.querySelectorAll(widgetSelector);
-Array.prototype.slice.call(widgetContainers)
-  .forEach(function(widgetContainer) {
-    var settings = readSettings(widgetContainer);
+var containers = document.querySelectorAll(containerSelector);
+Array.prototype.slice.call(containers)
+  .forEach(function(container) {
+    var settings = readSettings(container);
 
     if (!settings.comicId) {
-      console.error('No comic id specified on', widgetContainer);
+      console.error('No comic id specified on', container);
     } else {
       client.byIssue(settings.comicId, function(error, data) {
         if (error) return console.error(error);
 
-        renderWidget(widgetContainer, data, settings);
+        renderWidget(container, data, settings);
       });
     }
   });
