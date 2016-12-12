@@ -31,6 +31,8 @@ function renderWidget(container, data, settings) {
 function makeWidget(data, settings) {
   var widget = document.createElement('div');
   widget.classList.add('cw-c-widget');
+  widget.setAttribute('data-comic-title', data.title);
+  widget.setAttribute('data-comic-publisher', data.publisher);
 
   if (settings.theme == 'dark') {
     widget.classList.add('cw-t-dark');
