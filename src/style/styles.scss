@@ -86,6 +86,11 @@ $default-foreground-color: #000;
   padding-top: 2rem;
   position: relative;
 
+  a {
+    color: blue;
+    font-weight: bold;
+  }
+
   &::before,
   &::after {
     display: block;
@@ -135,6 +140,13 @@ $default-foreground-color: #000;
   height: $graph-height + $x-axis-label-height;
   overflow-x: scroll;
   overflow-y: hidden;
+}
+
+.cw-c-widget__attribution-area {
+  flex: 1 1 100%;
+  font-size: .25rem;
+  padding-right: 1rem;
+  text-align: right;
 }
 
 //Graph
@@ -209,6 +221,15 @@ $default-foreground-color: #000;
     color: #bdbdbd;
   }
 
+
+  a {
+    color: #bdbdbd;
+
+    &:hover {
+      color: white;
+    }
+  }
+
   .cw-c-widget__y-axis-tick {
     text-shadow: 2px 0 0 rgba(0, 0, 0, .2);
   }
@@ -256,6 +277,14 @@ $default-foreground-color: #000;
     box-shadow: inset 0 0 0 .25rem #f3f3f3,
                 inset 0 0 0 .29rem rgba(0, 0, 0, .2);
     color: #4c4c4c;
+  }
+
+  a {
+    color: #4c4c4c;
+
+    &:hover {
+      color: black;
+    }
   }
 
   .cw-c-widget__y-axis-tick {

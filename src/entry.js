@@ -42,6 +42,7 @@ function makeWidget(data, settings) {
 
   widget.appendChild(makeYAxisLabels(data));
   widget.appendChild(makeGraphArea(data));
+  widget.appendChild(makeAttribution());
 
   return widget;
 }
@@ -79,6 +80,13 @@ function makeGraphArea(data) {
   graphArea.classList.add('cw-c-widget__graph-area');
   graphArea.appendChild(makeGraph(data));
   return graphArea;
+}
+
+function makeAttribution() {
+  var attribution = document.createElement('div');
+  attribution.classList.add('cw-c-widget__attribution-area');
+  attribution.innerHTML = 'API by <a href="https://github.com/comichron-data">Comichron Data Project</a>, Data by <a href="http://www.comichron.com/">Comichron</a>.';
+  return attribution;
 }
 
 function makeGraph(data) {
