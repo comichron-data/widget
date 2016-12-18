@@ -85,7 +85,7 @@ function makeGraphArea(data) {
 function makeAttribution() {
   var attribution = document.createElement('div');
   attribution.classList.add('cw-c-widget__attribution-area');
-  attribution.innerHTML = 'API by <a href="https://github.com/comichron-data">Comichron Data Project</a>, Data by <a href="http://www.comichron.com/">Comichron</a>.';
+  attribution.innerHTML = 'graph by <a href="https://github.com/comichron-data">Comichron Data Project</a>, data from <a href="http://www.comichron.com/">Comichron</a>';
   return attribution;
 }
 
