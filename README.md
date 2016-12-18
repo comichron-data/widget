@@ -12,9 +12,9 @@ Paste this snippet on the page once.
 <script async src="https://comichron-data.github.io/widget/script.js"></script>
 ```
 
-### 2. Find the id of the comic to show
+### 2. Find the id of the comic
 
-TBD - something involving https://comichron-data.github.io/graphs
+Search for a comic [here](https://comichron-data.github.io/graphs) and remember the comic's id.
 
 ### 3. Make a container div where you want the widget
 
