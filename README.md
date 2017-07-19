@@ -2,6 +2,10 @@
 
 Widget for showing a comic's issue-by-issue sales graph.
 
+## Demo
+
+https://codepen.io/psalaets/pen/Ogeqoz?editors=1000
+
 ## Quickstart
 
 ### 1. Include the script
